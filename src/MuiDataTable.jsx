@@ -7,10 +7,25 @@ import Paper from "@mui/material/Paper";
 import TableHeader from "./components/dataTable/tableHead/TableHeader";
 import TableDataList from "./components/dataTable/tableDataList/TableDataList";
 import SkeletonLoader from "./components/skeletonLoader/SkeletonLoader";
+import SortData from "./components/dataTable/sort/SortData";
+import FilterData from "./components/dataTable/filter/FilterData";
+import { Box } from "@mui/material";
 
-export const MuiDataTable = ({ loading, films }) => {
+export const MuiDataTable = ({
+  loading,
+  films,
+  sortBy,
+  setSortBy,
+  filter,
+  setFilter,
+}) => {
   return (
     <Fragment>
+      <Box sx={{ display: "flex", gap: "10px" }}>
+        <SortData sortBy={sortBy} setSortBy={setSortBy} />
+        <FilterData filter={filter} setFilter={setFilter} />
+      </Box>
+
       {loading ? (
         <SkeletonLoader />
       ) : (

@@ -4,8 +4,8 @@ import { MuiDataTable } from "./MuiDataTable";
 import { useFetchMovies } from "./hooks/useFetchMovies";
 
 const App = () => {
-  const { films, loading } = useFetchMovies();
-
+  const { films, loading, sortBy, setSortBy, filter, setFilter } =
+    useFetchMovies();
   return (
     <Container maxWidth="xl">
       <Typography
@@ -16,7 +16,14 @@ const App = () => {
       >
         Фильмы
       </Typography>
-      <MuiDataTable loading={loading} films={films} />
+      <MuiDataTable
+        loading={loading}
+        films={films}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        filter={filter}
+        setFilter={setFilter}
+      />
     </Container>
   );
 };

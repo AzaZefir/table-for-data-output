@@ -41,7 +41,7 @@ const TableDataList = ({ film }) => {
         <Typography variant="h4" component="h1" sx={{ mb: 2, mt: 3 }}>
           {film.title}
         </Typography>
-        <Box sx={{ display: "flex", alignItems:'center' }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <RatingStars rating={film.vote_average} />(
           {film.original_language.toUpperCase()})
         </Box>
