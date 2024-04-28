@@ -16,7 +16,6 @@ const TableDataList = ({ film, handleOpen, handleOpenPoster }) => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/${film.backdrop_path}')`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundRepeat: "no-repeat",
           minHeight: 100,
           maxHeight: 300,
           cursor: "pointer",

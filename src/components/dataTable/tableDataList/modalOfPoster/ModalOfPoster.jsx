@@ -25,7 +25,6 @@ const ModalOfPoster = ({ openPoster, handleClosePoster, selectedPoster }) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            backgroundRepeat: "no-repeat",
             height: "90vh",
             cursor: "pointer",
           }}
