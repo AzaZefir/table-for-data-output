@@ -11,6 +11,8 @@ import SortData from "./components/dataTable/sort/SortData";
 import FilterData from "./components/dataTable/filter/FilterData";
 import { Box } from "@mui/material";
 
+import Theme from "./components/dataTable/theme/Theme";
+
 export const MuiDataTable = ({
   loading,
   films,
@@ -21,9 +23,10 @@ export const MuiDataTable = ({
 }) => {
   return (
     <Fragment>
-      <Box sx={{ display: "flex", gap: "10px" }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <SortData sortBy={sortBy} setSortBy={setSortBy} />
         <FilterData filter={filter} setFilter={setFilter} />
+        <Theme />
       </Box>
 
       {loading ? (
