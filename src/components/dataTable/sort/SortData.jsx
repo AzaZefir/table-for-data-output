@@ -11,7 +11,14 @@ const SortData = ({ sortBy, setSortBy }) => {
   };
 
   return (
-    <Box sx={{ minWidth: 280 }}>
+    <Box
+      sx={{
+        minWidth: 280,
+        "@media (max-width: 576px)": {
+          width: "100%",
+        },
+      }}
+    >
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
           {getSortLabel(sortBy)}

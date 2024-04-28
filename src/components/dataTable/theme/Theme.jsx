@@ -19,6 +19,9 @@ const Theme = () => {
         bgcolor: "background.default",
         color: "text.primary",
         borderRadius: 1,
+        "@media (max-width: 576px)": {
+          justifyContent: "center",
+        },
       }}
     >
       <IconButton

@@ -13,7 +13,14 @@ const FilterData = ({ filter, setFilter }) => {
   };
 
   return (
-    <Box sx={{ minWidth: 250 }}>
+    <Box
+      sx={{
+        minWidth: 250,
+        "@media (max-width: 576px)": {
+          width: "100%",
+        },
+      }}
+    >
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
           {getFilterLabel(filter)}
