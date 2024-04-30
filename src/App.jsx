@@ -1,7 +1,7 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import React from "react";
 import "./App.css";
-import { Container, Typography, createTheme } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { MuiDataTable } from "./MuiDataTable";
 import { useFetchMovies } from "./hooks/useFetchMovies";
 import { ThemeProvider } from "@mui/material/styles";
@@ -11,8 +11,7 @@ import { ColorModeContext } from "./context/ColorModeContext";
 const App = () => {
   const { colorMode, theme } = useThemeMode();
 
-  const { films, loading, sortBy, setSortBy, filter, setFilter } =
-    useFetchMovies();
+  const { films, loading } = useFetchMovies();
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -27,14 +26,7 @@ const App = () => {
           >
             Фильмы
           </Typography>
-          <MuiDataTable
-            loading={loading}
-            films={films}
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-            filter={filter}
-            setFilter={setFilter}
-          />
+          <MuiDataTable loading={loading} films={films} />
         </Container>
       </ThemeProvider>
     </ColorModeContext.Provider>
