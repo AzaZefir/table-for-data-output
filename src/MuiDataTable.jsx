@@ -1,92 +1,97 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import Paper from "@mui/material/Paper";
-import TableHeader from "./components/dataTable/tableHead/TableHeader";
-import TableDataList from "./components/dataTable/tableDataList/TableDataList";
 import SkeletonLoader from "./components/skeletonLoader/SkeletonLoader";
-import SortData from "./components/dataTable/sort/SortData";
-import FilterData from "./components/dataTable/filter/FilterData";
 import { Box } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
-import Theme from "./components/dataTable/theme/Theme";
-import { ModalOfAllRow } from "./components/dataTable/tableDataList/modalOfAllRow/ModalOffAllRow";
-import ModalOfPoster from "./components/dataTable/tableDataList/modalOfPoster/ModalOfPoster";
+import Theme from "./components/theme/Theme";
+import { OpenPosterModal } from "./components/posterModal/OpenPosterModal";
+import { DescriptionInfoModal } from "./components/commonInfoModal/descriptionModal/DescriptionInfoModal";
+import { RatingInfoModal } from "./components/commonInfoModal/ratingModal/RatingModal";
+import LikedInfoModal from "./components/commonInfoModal/likedModal/LikedInfoModal";
+import { ReleaseInfoModal } from "./components/commonInfoModal/releaseModal/ReleaseModal";
 
-export const MuiDataTable = ({
-  loading,
-  films,
-  sortBy,
-  setSortBy,
-  filter,
-  setFilter,
-}) => {
-  const [open, setOpen] = useState(false);
-  const [openPoster, setOpenPoster] = useState(false);
-  const [selectedFilm, setSelectedFilm] = useState(null);
-  const [selectedPoster, setSelectedPoster] = useState(null);
+const columns = [
+  {
+    field: "original_title",
+    headerName: "Постер",
+    width: 150,
+    editable: false,
+    renderCell: OpenPosterModal,
+  },
+  {
+    field: "overview",
+    headerName: "Описание",
+    width: 400,
+    editable: false,
+    renderCell: DescriptionInfoModal,
+  },
+  {
+    field: "vote_average",
+    headerName: "Рейтинг",
+    width: 300,
+    editable: false,
+    renderCell: RatingInfoModal,
+  },
+  {
+    field: "vote_count",
+    headerName: "Понравилось",
+    type: "number",
+    width: 170,
+    editable: false,
+    renderCell: LikedInfoModal,
+  },
+  {
+    field: "release_date",
+    headerName: "Дата выхода",
+    type: "number",
+    width: 200,
+    editable: false,
+    renderCell: ReleaseInfoModal,
+  },
+];
 
-  const handleOpen = (film) => {
-    setOpen(true);
-    setSelectedFilm(film);
-  };
-
-  const handleOpenPoster = (film) => {
-    setOpenPoster(true);
-    setSelectedPoster(film);
-  };
-
-  const handleClose = () => setOpen(false);
-  const handleClosePoster = () => setOpenPoster(false);
-
+export const MuiDataTable = ({ loading, films }) => {
   return (
     <Fragment>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          "@media (max-width: 576px)": {
-            flexDirection: "column",
-          },
-        }}
-      >
-        <SortData sortBy={sortBy} setSortBy={setSortBy} />
-        <FilterData filter={filter} setFilter={setFilter} />
-        <Theme />
-      </Box>
+      <Theme />
 
       {loading ? (
         <SkeletonLoader />
       ) : (
-        <TableContainer component={Paper} sx={{ mb: 4, mt: 4 }}>
-          <Table aria-label="simple table">
-            <TableHeader />
-            <TableBody>
-              {films.results.map((film, index) => (
-                <TableDataList
-                  film={film}
-                  key={`${film.id}_${index}`}
-                  handleOpen={handleOpen}
-                  handleOpenPoster={handleOpenPoster}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        films && (
+          <Box
+            sx={{
+              height: "100vh",
+              width: "100%",
+              marginBottom: "100px",
+              marginTop: "20px",
+            }}
+          >
+            <DataGrid
+              rows={films.results}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 10,
+                  },
+                },
+              }}
+              getRowHeight={() => "auto"}
+              sx={{
+                "& .MuiDataGrid-cellContent": {
+                  minHeight: 100,
+                  maxHeight: 300,
+                },
+              }}
+              pageSizeOptions={[10]}
+              checkboxSelection
+              disableRowSelectionOnClick
+            />
+          </Box>
+        )
       )}
-      <ModalOfAllRow
-        open={open}
-        handleClose={handleClose}
-        selectedFilm={selectedFilm}
-      />
-      <ModalOfPoster
-        handleClosePoster={handleClosePoster}
-        openPoster={openPoster}
-        selectedPoster={selectedPoster}
-      />
     </Fragment>
   );
 };
