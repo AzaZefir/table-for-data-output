@@ -20,8 +20,8 @@ export const MuiDataTable = ({ loading, films }) => {
             sx={{
               height: "100vh",
               width: "100%",
-              marginBottom: "100px",
-              marginTop: "20px",
+              paddingBottom: "100px",
+              paddingTop: "20px",
             }}
           >
             <DataGrid
@@ -42,7 +42,6 @@ export const MuiDataTable = ({ loading, films }) => {
                 },
               }}
               pageSizeOptions={[10]}
-              checkboxSelection
               disableRowSelectionOnClick
             />
           </Box>
