@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { RatingStars } from "../../../ratings/Ratings";
+import { RatingStars } from "../../ratings/Ratings";
 import { Box } from "@mui/material";
 
 const style = {

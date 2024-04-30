@@ -9,6 +9,7 @@ const SkeletonLoader = () => {
           WebkitTransform: "none",
           minHeight: 60,
           mb: 1,
+          mt: 2,
         }}
       />
       {[...new Array(10)].map((_, index) => (
@@ -16,7 +17,7 @@ const SkeletonLoader = () => {
           key={index}
           sx={{
             WebkitTransform: "none",
-            minHeight: 300,
+            minHeight: 200,
             mb: 2,
           }}
         />
