@@ -1,5 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
-export const RatingStars = ({ rating }) => {
+import { Box } from "@mui/material";
+export const RatingStars = ({ rating, handleOpen }) => {
   const renderStars = () => {
     const stars = [];
     const roundedRating = Math.round(rating);
@@ -16,10 +17,19 @@ export const RatingStars = ({ rating }) => {
   };
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "start",
+        height: "100%",
+        cursor: "pointer",
+      }}
+      onClick={handleOpen}
+    >
       {renderStars().map((star, index) => (
         <span key={index}>{star}</span>
       ))}
-    </div>
+    </Box>
   );
 };
