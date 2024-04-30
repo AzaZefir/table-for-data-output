@@ -22,7 +22,6 @@ export const ModalOfAllRow = ({ open, handleClose, selectedFilm }) => {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/${selectedFilm.backdrop_path}')`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundRepeat: "no-repeat",
             border: "none",
             boxShadow: 24,
             p: 4,
